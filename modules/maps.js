@@ -95,10 +95,10 @@ function testMapSpecialModController() {
         var c = document.getElementById("advSpecialSelect");
         if (c) {
             if (59 <= game.global.highestLevelCleared) {
-                if (needPrestige && a.includes("p")) {
-                    c.value = "p";
-                } else if (shouldFarm || !enoughHealth || preSpireFarming) {
+                if (shouldFarm || !enoughHealth || preSpireFarming) {
                     c.value = a.includes("lmc") ? "lmc" : a.includes("hc") ? "hc" : a.includes("smc") ? "smc" : "lc";
+                } else if (needPrestige && a.includes("p")) {
+                    c.value = "p";
                 } else c.value = "fa";
                 for (var d = updateMapCost(!0), e = game.resources.fragments.owned, f = 100 * (d / e); 0 < c.selectedIndex && d > e;) {
                     c.selectedIndex -= 1;
