@@ -95,7 +95,9 @@ function testMapSpecialModController() {
         var c = document.getElementById("advSpecialSelect");
         if (c) {
             if (59 <= game.global.highestLevelCleared) {
-                if (shouldFarm || !enoughHealth || preSpireFarming) {
+                if (needPrestige && a.includes("p") && challengeActive("Mapology")) {
+                    c.value = "p";
+                } else if (shouldFarm || !enoughHealth || preSpireFarming) {
                     c.value = a.includes("lmc") ? "lmc" : a.includes("hc") ? "hc" : a.includes("smc") ? "smc" : "lc";
                 } else if (needPrestige && a.includes("p")) {
                     c.value = "p";
