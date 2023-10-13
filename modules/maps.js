@@ -104,7 +104,7 @@ function testMapSpecialModController() {
                 } else c.value = "fa";
                 for (var d = updateMapCost(!0), e = game.resources.fragments.owned, f = 100 * (d / e); 0 < c.selectedIndex && d > e;) {
                     c.selectedIndex -= 1;
-                    "0" != c.value && console.log("Could not afford " + mapSpecialModifierConfig[c.value].name);
+                    "0" != c.value && debug("Could not afford " + mapSpecialModifierConfig[c.value].name);
                 }
                 var d = updateMapCost(!0),
                     e = game.resources.fragments.owned;
