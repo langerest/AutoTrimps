@@ -103,6 +103,7 @@ function testMapSpecialModController() {
                     c.value = "p";
                 } else c.value = "fa";
                 for (var d = updateMapCost(!0), e = game.resources.fragments.owned, f = 100 * (d / e); 0 < c.selectedIndex && d > e; d = updateMapCost(!0)) {
+                    "0" != c.value && debug("Could not afford " + mapSpecialModifierConfig[c.value].name + ". Cost: " + (100 * (d / e)).toFixed(2) + "% of your fragments.");
                     if (c.value == "lmc")
                     {
                         c.value = "hc";
@@ -123,7 +124,6 @@ function testMapSpecialModController() {
                     {
                         c.selectedIndex = 0;
                     }
-                    "0" != c.value && debug("Could not afford " + mapSpecialModifierConfig[c.value].name + ". Cost: " + (100 * (d / e)).toFixed(2) + "% of your fragments.");
                 }
                 var d = updateMapCost(!0),
                     e = game.resources.fragments.owned;
