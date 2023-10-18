@@ -150,7 +150,43 @@ function c2runner() {
    
 if (!game.global.portalActive) return;
     if (getPageSetting('c2runnerstart') == true && getPageSetting('c2runnerportal') > 0 && getPageSetting('c2runnerpercent') > 0) {
-            if (game.global.highestLevelCleared > 34 && (100*(game.c2.Size/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+            if (game.global.highestLevelCleared > 179 && (100*(game.c2.Size/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Watch/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Waze");
+                debug("C2 Runner: Running C2 Challenge Waze");
+            }
+            else if (game.global.highestLevelCleared > 44 && (100*(game.c2.Discipline/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Meditate/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Enlightened");
+                debug("C2 Runner: Running C2 Challenge Enlightened");
+            }
+            else if (game.global.highestLevelCleared > 144 && (100*(game.c2.Metal/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Nom/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Nometal");
+                debug("C2 Runner: Running C2 Challenge Nometal");
+            }
+            else if (game.global.highestLevelCleared > 129 && (100*(game.c2.Slow/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Electricity/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Paralysis");
+                debug("C2 Runner: Running C2 Challenge Paralysis");
+            }
+            else if (game.global.highestLevelCleared > 179 && (100*(game.c2.Lead/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Toxicity/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Toxad");
+                debug("C2 Runner: Running C2 Challenge Toxad");
+            }
+            else if (game.global.highestLevelCleared > 150 && (100*(game.c2.Balance/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Mapology/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Topology");
+                debug("C2 Runner: Running C2 Challenge Topology");
+            }
+            else if (game.global.highestLevelCleared > 34 && (100*(game.c2.Size/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
                 challengeSquaredMode = true;
                 selectChallenge("Size");
                 debug("C2 Runner: Running C2 Challenge Size");
