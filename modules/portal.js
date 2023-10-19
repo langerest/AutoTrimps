@@ -168,12 +168,6 @@ if (!game.global.portalActive) return;
                 selectChallenge("Nometal");
                 debug("C2 Runner: Running C2 Challenge Nometal");
             }
-            else if (game.global.highestLevelCleared > 129 && (100*(game.c2.Slow/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
-            && (100*(game.c2.Electricity/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
-                challengeSquaredMode = true;
-                selectChallenge("Paralysis");
-                debug("C2 Runner: Running C2 Challenge Paralysis");
-            }
             else if (game.global.highestLevelCleared > 179 && (100*(game.c2.Lead/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
             && (100*(game.c2.Toxicity/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
                 challengeSquaredMode = true;
@@ -185,6 +179,12 @@ if (!game.global.portalActive) return;
                 challengeSquaredMode = true;
                 selectChallenge("Topology");
                 debug("C2 Runner: Running C2 Challenge Topology");
+            }
+            else if (game.global.highestLevelCleared > 129 && (100*(game.c2.Slow/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')
+            && (100*(game.c2.Electricity/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
+                challengeSquaredMode = true;
+                selectChallenge("Paralysis");
+                debug("C2 Runner: Running C2 Challenge Paralysis");
             }
             else if (game.global.highestLevelCleared > 34 && (100*(game.c2.Size/(game.global.highestLevelCleared+1))) < getPageSetting('c2runnerpercent')) {
                 challengeSquaredMode = true;
