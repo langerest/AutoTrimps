@@ -160,7 +160,7 @@ function ATGA2() {
 		var now = new Date().getTime();
 		var thresh = new DecimalBreed(totalTime.mul(0.02));
 		var compareTime;
-		if (timeRemaining.cmp(1) > 0 && timeRemaining.cmp(target.add(1)) > 0) {
+		if (timeRemaining.cmp(1) > 0 && timeRemaining.cmp(target.minus((now - game.global.lastSoldierSentAt) / 1000)) > 0) {
 			compareTime = new DecimalBreed(timeRemaining.add(-1));}
 		else {
 			compareTime = new DecimalBreed(totalTime);}
