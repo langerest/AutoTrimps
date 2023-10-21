@@ -171,7 +171,7 @@ function ATGA2() {
 		var genDif = new DecimalBreed(Decimal.log10(target.div(compareTime)).div(Decimal.log10(1.02))).ceil();
         debug("CompareTime:" + compareTime +" breedTime:" + breedtime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
 
-        if (compareTime.cmp(target) < 0) {
+        if (compareTime.cmp(target.minus(breedtime)) < 0 || (compareTime.cmp(target) < 0 && timeRemaining.cmp(1) <= 0)) {
 			if (game.resources.food.owned * (getPageSetting('ATGA2gen')/100) < getNextGeneticistCost()) {return;}
 			else if (timeRemaining.cmp(1) < 0 || target.minus(breedtime).cmp(timeRemaining) > 0){
 				if (genDif.cmp(0) > 0){
@@ -180,7 +180,8 @@ function ATGA2() {
 				}
 			}
 		}
-		else if (compareTime.add(thresh.mul(-1)).cmp(target) > 0  || (potencyMod.cmp(1) == 0)){
+		else if ((compareTime.add(thresh.mul(-1)).cmp(target.minus(breedtime)) > 0 && timeRemaining.cmp(1) > 0)
+             || compareTime.add(thresh.mul(-1)).cmp(target) > 0  || (potencyMod.cmp(1) == 0)){
 			if (!genDif.isFinite()) genDif = new Decimal(-1);
 			if (genDif.cmp(0) < 0 && game.options.menu.gaFire.enabled != 2){
 				if (genDif.cmp(-10) < 0) genDif = new Decimal(-10);
