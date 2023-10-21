@@ -98,7 +98,7 @@ function testMapSpecialModController() {
                 if (needPrestige && a.includes("p") && challengeActive("Mapology")) {
                     c.value = "p";
                 } else if (shouldFarm || !enoughHealth || preSpireFarming) {
-                    c.value = a.includes("lmc") ? "lmc" : a.includes("hc") ? "hc" : a.includes("smc") ? "smc" : "lc";
+                    c.value = a.includes("lmc") && !challengeActive("Metal") ? "lmc" : a.includes("hc") ? "hc" : a.includes("smc") && !challengeActive("Metal") ? "smc" : "lc";
                 } else if (needPrestige && a.includes("p")) {
                     c.value = "p";
                 } else c.value = "fa";
@@ -110,7 +110,7 @@ function testMapSpecialModController() {
                     }
                     else if (c.value == "hc")
                     {
-                        c.value = "smc";
+                        c.value = challengeActive("Metal") ? "lc" : "smc";
                     }
                     else if (c.value == "smc")
                     {
