@@ -158,33 +158,32 @@ function ATGA2() {
 		}
 
 		var now = new Date().getTime();
-        var breedtime = (game.jobs.Amalgamator.owned > 0) ? (now - game.global.lastSoldierSentAt) / 1000 : game.global.lastBreedTime / 1000;
+        var breedTime = (game.jobs.Amalgamator.owned > 0) ? (now - game.global.lastSoldierSentAt) / 1000 : game.global.lastBreedTime / 1000;
 		var thresh = new DecimalBreed(totalTime.mul(0.02));
 		var compareTime;
-		if (timeRemaining.cmp(1) > 0 && (timeRemaining.cmp(target.add(1)) > 0 || timeRemaining.cmp(totalTime.add(1)) > 0)) {
-			compareTime = new DecimalBreed(timeRemaining.add(-1));}
+		if (timeRemaining.cmp(1) > 0 && (timeRemaining.cmp(target) > 0 || timeRemaining.cmp(totalTime) > 0)) {
+			compareTime = new DecimalBreed(timeRemaining.add(breedTime));}
 		else {
 			compareTime = new DecimalBreed(totalTime);
         }
 		if (!thresh.isFinite()) thresh = new Decimal(0);
 		if (!compareTime.isFinite()) compareTime = new Decimal(999);
 		var genDif = new DecimalBreed(Decimal.log10(target.div(compareTime)).div(Decimal.log10(1.02))).ceil();
-        debug("CompareTime:" + compareTime +" breedTime:" + breedtime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
+        debug("CompareTime:" + compareTime +" breedTime:" + breedTime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
 
-        if (timeRemaining.add(breedtime).cmp(target) < 0 || (compareTime.cmp(target) < 0 && timeRemaining.cmp(1) <= 0)) {
+        if (compareTime.cmp(target) < 0) {
 			if (game.resources.food.owned * (getPageSetting('ATGA2gen')/100) < getNextGeneticistCost()) {return;}
-			else if (timeRemaining.cmp(1) < 0 || target.minus(breedtime).cmp(timeRemaining) > 0){
-				if (genDif.cmp(0) > 0){
-					if (genDif.cmp(10) > 0) genDif = new Decimal(10);
-					addGeneticist(genDif.toNumber());
-				}
+			if (genDif.cmp(0) > 0){
+				if (genDif.cmp(10) > 0) genDif = new Decimal(10);
+                debug("Add " + genDif.toNumber() + " Geneticists");
+				addGeneticist(genDif.toNumber());
 			}
 		}
-		else if ((timeRemaining.add(breedtime).add(thresh.mul(-1)).cmp(target) > 0 && timeRemaining.cmp(1) > 0)
-             || compareTime.add(thresh.mul(-1)).cmp(target) > 0  || (potencyMod.cmp(1) == 0)){
+		else if (compareTime.add(thresh.mul(-1)).cmp(target) > 0  || (potencyMod.cmp(1) == 0)){
 			if (!genDif.isFinite()) genDif = new Decimal(-1);
 			if (genDif.cmp(0) < 0 && game.options.menu.gaFire.enabled != 2){
 				if (genDif.cmp(-10) < 0) genDif = new Decimal(-10);
+                debug("Remove " + genDif.abs().toNumber() + " Geneticists");
 				removeGeneticist(genDif.abs().toNumber());
 			}
 		}
