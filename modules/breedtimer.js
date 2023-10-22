@@ -169,7 +169,7 @@ function ATGA2() {
 		if (!thresh.isFinite()) thresh = new Decimal(0);
 		if (!compareTime.isFinite()) compareTime = new Decimal(999);
 		var genDif = new DecimalBreed(Decimal.log10(target.div(compareTime)).div(Decimal.log10(1.02))).ceil();
-        // debug("CompareTime:" + compareTime +" breedTime:" + breedtime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
+        debug("CompareTime:" + compareTime +" breedTime:" + breedtime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
 
         if (timeRemaining.add(breedtime).cmp(target) < 0 || (compareTime.cmp(target) < 0 && timeRemaining.cmp(1) <= 0)) {
 			if (game.resources.food.owned * (getPageSetting('ATGA2gen')/100) < getNextGeneticistCost()) {return;}
