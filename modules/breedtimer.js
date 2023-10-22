@@ -169,13 +169,13 @@ function ATGA2() {
 		if (!thresh.isFinite()) thresh = new Decimal(0);
 		if (!compareTime.isFinite()) compareTime = new Decimal(999);
 		var genDif = new DecimalBreed(Decimal.log10(target.div(compareTime)).div(Decimal.log10(1.02))).ceil();
-        debug("CompareTime:" + compareTime +" breedTime:" + breedTime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
+        // debug("CompareTime:" + compareTime +" breedTime:" + breedTime + " timeRemaining:" + timeRemaining + " totalTime:" + totalTime);
 
         if (compareTime.cmp(target) < 0) {
 			if (game.resources.food.owned * (getPageSetting('ATGA2gen')/100) < getNextGeneticistCost()) {return;}
 			if (genDif.cmp(0) > 0){
 				if (genDif.cmp(10) > 0) genDif = new Decimal(10);
-                debug("Add " + genDif.toNumber() + " Geneticists");
+                // debug("Add " + genDif.toNumber() + " Geneticists");
 				addGeneticist(genDif.toNumber());
 			}
 		}
@@ -183,7 +183,7 @@ function ATGA2() {
 			if (!genDif.isFinite()) genDif = new Decimal(-1);
 			if (genDif.cmp(0) < 0 && game.options.menu.gaFire.enabled != 2){
 				if (genDif.cmp(-10) < 0) genDif = new Decimal(-10);
-                debug("Remove " + genDif.abs().toNumber() + " Geneticists");
+                // debug("Remove " + genDif.abs().toNumber() + " Geneticists");
 				removeGeneticist(genDif.abs().toNumber());
 			}
 		}
