@@ -161,7 +161,7 @@ function ATGA2() {
         var breedTime = (game.jobs.Amalgamator.owned > 0) ? (now - game.global.lastSoldierSentAt) / 1000 : game.global.lastBreedTime / 1000;
 		var thresh = new DecimalBreed(totalTime.mul(0.02));
 		var compareTime;
-		if (timeRemaining.cmp(1) > 0 && (timeRemaining.cmp(target) > 0 || timeRemaining.cmp(totalTime) > 0)) {
+		if (timeRemaining.cmp(0.4) > 0 && (timeRemaining.cmp(target) > 0 || timeRemaining.cmp(totalTime) > 0)) {
 			compareTime = new DecimalBreed(timeRemaining.add(breedTime));}
 		else {
 			compareTime = new DecimalBreed(totalTime);
