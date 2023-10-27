@@ -1271,6 +1271,7 @@ function Praiding() {
         prestraid = true;
         mapbought = false;
         plusLevel += 1;
+        debug("plusLevel: " + plusLevel);
         if (repMap != undefined) {
             recycleMap(getMapIndex(repMap));
             repMap = undefined;
