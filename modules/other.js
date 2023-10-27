@@ -1255,7 +1255,7 @@ function Praiding() {
                     debug("Prestige Raid finished due to you can't afford to or you are too weak or you have limited yourself in a P/I zone. ");
                 }
             }
-            if (game.global.preMapsActive && !game.global.mapsActive && mapbought && pMap != undefined && !prestraid) {
+            if (game.global.preMapsActive && !game.global.mapsActive && pMap != undefined && !prestraid) {
                 debug("running map " + plusLevel);
                 selectMap(pMap);
                 runMap();
