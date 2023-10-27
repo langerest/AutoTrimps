@@ -1235,6 +1235,7 @@ function Praiding() {
             }
             if (game.global.preMapsActive && !game.global.mapsActive && !prestraid) {
                 debug("Map Loop");
+                if (plusLevel > 5) return;
                 if (pcheck(plusLevel) && pMap == undefined && !mapbought) {
                     debug("Check complete for map " + plusLevel);
                     plusPres(plusLevel);
@@ -1277,17 +1278,17 @@ function Praiding() {
             repMap = undefined;
         }
     }
-    if (getPageSetting('AutoMaps') == 0 && game.global.preMapsActive && prestraid && !failpraid && prestraidon) {
+    if (game.global.preMapsActive && prestraid && !failpraid && prestraidon) {
         praidDone = true;
         prestraidon = false;
         debug("Prestige raiding successful!");
     }
-    if (praidDone)
+    if (getPageSetting('AutoMaps') == 0 && game.global.preMapsActive && praidDone)
     {
         autoTrimpSettings["AutoMaps"].value = 1;
         game.options.menu.repeatUntil.enabled = 0;
-        plusLevel = 1;
         pMap = undefined;
+        plusLevel = 1;
         debug("Turning AutoMaps back on");
     }
     if (getPageSetting(praidSetting).every(isBelowThreshold)) {
