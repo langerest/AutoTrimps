@@ -1218,7 +1218,7 @@ function Praiding() {
     }
 
     if (getPageSetting(praidSetting).length) {
-        if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) && !prestraid && !failpraid) {
+        if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) && !prestraid && !failpraid && !praidDone) {
             prestraidon = true;
             if (getPageSetting('AutoMaps') == 1 && !prestraid && !failpraid) {
                 autoTrimpSettings["AutoMaps"].value = 0;
