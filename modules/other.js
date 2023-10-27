@@ -70,7 +70,7 @@ function plusPres() {
     document.getElementById("biomeAdvMapsSelect").value = "Random", document.getElementById("advExtraLevelSelect").value = plusMapToRun(game.global.world), document.getElementById("advSpecialSelect").value = "p", document.getElementById("lootAdvMapsRange").value = 0, document.getElementById("difficultyAdvMapsRange").value = 9, document.getElementById("sizeAdvMapsRange").value = 9, document.getElementById("advPerfectCheckbox").checked = !1, document.getElementById("mapLevelInput").value = game.global.world, updateMapCost()
 }
 
-function plusMapToRun(a) {
+function plusMapToRunMax(a) {
     return 9 == a % 10 ? 6 : 5 > a % 10 ? 5 - a % 10 : 11 - a % 10
 }
 
@@ -214,6 +214,112 @@ function plusMapToRun5() {
     if (game.global.world % 10 == 9)
         map = 6;
     return map;
+}
+
+function plusMapToRun(plusLevel) {
+    var worldLevel = game.global.world % 10;
+    return worldLevel > 5 ? 10 - worldLevel + plusLevel : worldLevel + plusLevel > 5 ? plusLevel + 5 : plusLevel;
+}
+
+function plusPres(plusLevel) {
+    document.getElementById("biomeAdvMapsSelect").value = "Depths";
+    document.getElementById("advExtraLevelSelect").value = plusMapToRun(plusLevel);
+    document.getElementById("advSpecialSelect").value = "p";
+    document.getElementById("lootAdvMapsRange").value = 0;
+    document.getElementById("difficultyAdvMapsRange").value = 9;
+    document.getElementById("sizeAdvMapsRange").value = 9;
+    document.getElementById("advPerfectCheckbox").checked = true;
+    document.getElementById("mapLevelInput").value = game.global.world;
+    updateMapCost();
+
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("biomeAdvMapsSelect").value = "Random";
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("advPerfectCheckbox").checked = false;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 8;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 8;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 7;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 7;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 6;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 6;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 5;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 5;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 4;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 4;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 3;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 3;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 2;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 2;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 1;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 1;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("difficultyAdvMapsRange").value = 0;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("sizeAdvMapsRange").value = 0;
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("advSpecialSelect").value = "fa";
+        updateMapCost();
+    }
+    if (updateMapCost(true) > game.resources.fragments.owned) {
+        document.getElementById("advSpecialSelect").value = "0";
+        updateMapCost();
+    }
 }
 
 function plusPres1() {
@@ -721,6 +827,39 @@ function plusPres5() {
     }
 }
 
+function pcheck(plusLevel) {
+
+    var HD;
+    var P;
+    var I;
+
+    if (game.global.challengeActive != "Daily") {
+        HD = getPageSetting('PraidingHD');
+        P = (getPageSetting('PraidingP') > 0 ? getPageSetting('PraidingP') : 0);
+        I = (getPageSetting('PraidingI') > 0 ? getPageSetting('PraidingI') : 0);
+    }
+    if (game.global.challengeActive == "Daily") {
+        HD = getPageSetting('dPraidingHD');
+        P = (getPageSetting('dPraidingP') > 0 ? getPageSetting('dPraidingP') : 0);
+        I = (getPageSetting('dPraidingI') > 0 ? getPageSetting('dPraidingI') : 0);
+    }
+
+    var go = false;
+
+    if (HD <= 0) {
+        go = true;
+    } else if (HD > 0) {
+        go = (HD >= calcHDratio(game.global.world + plusMapToRun(plusLevel)));
+    }
+    if (P > 0 && getEmpowerment() == "Poison") {
+        go = (P >= plusMapToRun(plusLevel));
+    }
+    if (I > 0 && getEmpowerment() == "Ice") {
+        go = (I >= plusMapToRun(plusLevel));
+    }
+    return go;
+}
+
 function pcheck1() {
 
     var HD;
@@ -1061,27 +1200,25 @@ function pcheckmap5() {
     return go;
 }
 
-var pMap1 = undefined;
-var pMap2 = undefined;
-var pMap3 = undefined;
-var pMap4 = undefined;
-var pMap5 = undefined;
-var repMap1 = undefined;
-var repMap2 = undefined;
-var repMap3 = undefined;
-var repMap4 = undefined;
-var repMap5 = undefined;
-var mapbought1 = false;
-var mapbought2 = false;
-var mapbought3 = false;
-var mapbought4 = false;
-var mapbought5 = false;
+var plusLevel = 1;
+var pMap = undefined;
+var repMap = undefined;
+var mapbought = false;
 
 function Praiding() {
     var cell;
-    cell = ((getPageSetting('Praidingcell') > 0) ? getPageSetting('Praidingcell') : 0);
-    if (getPageSetting('Praidingzone').length) {
-        if (getPageSetting('Praidingzone').includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) && !prestraid && !failpraid) {
+
+    // Determine whether to use daily or normal run settings
+    if (game.global.challengeActive == "Daily") {
+        praidSetting = 'dPraidingzone';
+        cell = ((getPageSetting('dPraidingcell') > 0) ? getPageSetting('dPraidingcell') : 0);
+    } else {
+        praidSetting = 'Praidingzone';
+        cell = ((getPageSetting('Praidingcell') > 0) ? getPageSetting('Praidingcell') : 0);
+    }
+
+    if (getPageSetting(praidSetting).length) {
+        if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) && !prestraid && !failpraid) {
             prestraidon = true;
             if (getPageSetting('AutoMaps') == 1 && !prestraid && !failpraid) {
                 autoTrimpSettings["AutoMaps"].value = 0;
@@ -1098,185 +1235,69 @@ function Praiding() {
             }
             if (game.global.preMapsActive && !game.global.mapsActive && !prestraid) {
                 debug("Map Loop");
-                if (pcheckmap5() == true && pcheck5() == true && pMap5 == undefined && !mapbought5 && game.global.preMapsActive && !prestraid) {
-                    debug("Check complete for 5th map");
-                    plusPres5();
+                if (pcheck(plusLevel) && pMap == undefined && !mapbought) {
+                    debug("Check complete for map " + plusLevel);
+                    plusPres(plusLevel);
                     if ((updateMapCost(true) <= game.resources.fragments.owned)) {
                         buyMap();
-                        mapbought5 = true;
-                        if (mapbought5) {
-                            pMap5 = game.global.mapsOwnedArray[game.global.mapsOwnedArray.length - 1].id;
-                            debug("5th map bought");
+                        mapbought = true;
+                        if (mapbought) {
+                            pMap = game.global.mapsOwnedArray[game.global.mapsOwnedArray.length - 1].id;
+                            debug("map " + plusLevel + " bought");
                         }
                     }
                 }
-                if (pcheckmap4() == true && pcheck4() == true && pMap4 == undefined && !mapbought4 && game.global.preMapsActive && !prestraid) {
-                    debug("Check complete for 4th map");
-                    plusPres4();
-                    if ((updateMapCost(true) <= game.resources.fragments.owned)) {
-                        buyMap();
-                        mapbought4 = true;
-                        if (mapbought4) {
-                            pMap4 = game.global.mapsOwnedArray[game.global.mapsOwnedArray.length - 1].id;
-                            debug("4th map bought");
-                        }
-                    }
-                }
-                if (pcheckmap3() == true && pcheck3() == true && pMap3 == undefined && !mapbought3 && game.global.preMapsActive && !prestraid) {
-                    debug("Check complete for 3rd map");
-                    plusPres3();
-                    if ((updateMapCost(true) <= game.resources.fragments.owned)) {
-                        buyMap();
-                        mapbought3 = true;
-                        if (mapbought3) {
-                            pMap3 = game.global.mapsOwnedArray[game.global.mapsOwnedArray.length - 1].id;
-                            debug("3rd map bought");
-                        }
-                    }
-                }
-                if (pcheckmap2() == true && pcheck2() == true && pMap2 == undefined && !mapbought2 && game.global.preMapsActive && !prestraid) {
-                    debug("Check complete for 2nd map");
-                    plusPres2();
-                    if ((updateMapCost(true) <= game.resources.fragments.owned)) {
-                        buyMap();
-                        mapbought2 = true;
-                        if (mapbought2) {
-                            pMap2 = game.global.mapsOwnedArray[game.global.mapsOwnedArray.length - 1].id;
-                            debug("2nd map bought");
-                        }
-                    }
-                }
-                if (pcheckmap1() == true && pcheck1() == true && pMap1 == undefined && !mapbought1 && game.global.preMapsActive && !prestraid) {
-                    debug("Check complete for 1st map");
-                    plusPres1();
-                    if ((updateMapCost(true) <= game.resources.fragments.owned)) {
-                        buyMap();
-                        mapbought1 = true;
-                        if (mapbought1) {
-                            pMap1 = game.global.mapsOwnedArray[game.global.mapsOwnedArray.length - 1].id;
-                            debug("1st map bought");
-                        }
-                    }
-                }
-                if (!mapbought1 && !mapbought2 && !mapbought3 && !mapbought4 && !mapbought5) {
-                    if (getPageSetting('AutoMaps') == 0 && !prestraid) {
-                        autoTrimpSettings["AutoMaps"].value = 1;
-                        game.options.menu.repeatUntil.enabled = 0;
-                        prestraidon = false;
-                        failpraid = true;
-                        praidDone = true;
-                        pMap1 = undefined;
-                        pMap2 = undefined;
-                        pMap3 = undefined;
-                        pMap4 = undefined;
-                        pMap5 = undefined;
-                        debug("Failed to Prestige Raid. Looks like you can't afford to or you are too weak or you have limited yourself in a P/I zone. ");
-                    }
-                    return;
+
+                if (!mapbought) {
+                    prestraidon = false;
+                    failpraid = plusLevel <= 1 ? true : false;
+                    praidDone = true;
+                    debug("Prestige Raid finished due to you can't afford to or you are too weak or you have limited yourself in a P/I zone. ");
                 }
             }
-            if (game.global.preMapsActive && !game.global.mapsActive && mapbought1 && pMap1 != undefined && !prestraid) {
-                debug("running map 1");
-                selectMap(pMap1);
+            if (game.global.preMapsActive && !game.global.mapsActive && mapbought1 && pMap != undefined && !prestraid) {
+                debug("running map " + plusLevel);
+                selectMap(pMap);
                 runMap();
-                repMap1 = pMap1;
-                pMap1 = undefined;
-            }
-            if (game.global.preMapsActive && !game.global.mapsActive && mapbought2 && pMap2 != undefined && !prestraid) {
-                debug("running map 2");
-                selectMap(pMap2);
-                runMap();
-                repMap2 = pMap2;
-                pMap2 = undefined;
-            }
-            if (game.global.preMapsActive && !game.global.mapsActive && mapbought3 && pMap3 != undefined && !prestraid) {
-                debug("running map 3");
-                selectMap(pMap3);
-                runMap();
-                repMap3 = pMap3;
-                pMap3 = undefined;
-            }
-            if (game.global.preMapsActive && !game.global.mapsActive && mapbought4 && pMap4 != undefined && !prestraid) {
-                debug("running map 4");
-                selectMap(pMap4);
-                runMap();
-                repMap4 = pMap4;
-                pMap4 = undefined;
-            }
-            if (game.global.preMapsActive && !game.global.mapsActive && mapbought5 && pMap5 != undefined && !prestraid) {
-                debug("running map 5");
-                selectMap(pMap5);
-                runMap();
-                repMap5 = pMap5;
-                pMap5 = undefined;
+                repMap = pMap;
+                pMap = undefined;
             }
             if (!prestraid && !game.global.repeatMap) {
                 repeatClicked();
             }
         }
     }
-    if (game.global.preMapsActive && (mapbought1 || mapbought2 || mapbought3 || mapbought4 || mapbought5) && pMap1 == undefined && pMap2 == undefined && pMap3 == undefined && pMap4 == undefined && pMap5 == undefined && !prestraid && !failpraid) {
+    if (game.global.preMapsActive && mapbought && pMap == undefined && !prestraid && !failpraid) {
         prestraid = true;
-        failpraid = false;
-        mapbought1 = false;
-        mapbought2 = false;
-        mapbought3 = false;
-        mapbought4 = false;
-        mapbought5 = false;
+        mapbought = false;
+        plusLevel += 1;
+        if (repMap != undefined) {
+            recycleMap(getMapIndex(repMap));
+            repMap = undefined;
+        }
     }
-    if (getPageSetting('AutoMaps') == 0 && game.global.preMapsActive && prestraid && !failpraid && prestraidon) {
+    if (getPageSetting('AutoMaps') == 0 && game.global.preMapsActive && prestraid && !failpraid && prestraidon && plusLevel > 5) {
         praidDone = true;
         prestraidon = false;
-        if (repMap1 != undefined) {
-            recycleMap(getMapIndex(repMap1));
-            repMap1 = undefined;
-        }
-        if (repMap2 != undefined) {
-            recycleMap(getMapIndex(repMap2));
-            repMap2 = undefined;
-        }
-        if (repMap3 != undefined) {
-            recycleMap(getMapIndex(repMap3));
-            repMap3 = undefined;
-        }
-        if (repMap4 != undefined) {
-            recycleMap(getMapIndex(repMap4));
-            repMap4 = undefined;
-        }
-        if (repMap5 != undefined) {
-            recycleMap(getMapIndex(repMap5));
-            repMap5 = undefined;
-        }
+        debug("Prestige raiding successful!");
+    }
+    if (praidDone)
+    {
         autoTrimpSettings["AutoMaps"].value = 1;
         game.options.menu.repeatUntil.enabled = 0;
-        pMap1 = undefined;
-        pMap2 = undefined;
-        pMap3 = undefined;
-        pMap4 = undefined;
-        pMap5 = undefined;
-        debug("Prestige raiding successful!");
+        plusLevel = 1;
+        pMap = undefined;
         debug("Turning AutoMaps back on");
     }
-    if (getPageSetting('Praidingzone').every(isBelowThreshold)) {
+    if (getPageSetting(praidSetting).every(isBelowThreshold)) {
         prestraid = false;
         failpraid = false;
         prestraidon = false;
-        mapbought1 = false;
-        mapbought2 = false;
-        mapbought3 = false;
-        mapbought4 = false;
-        mapbought5 = false;
-        pMap1 = undefined;
-        pMap2 = undefined;
-        pMap3 = undefined;
-        pMap4 = undefined;
-        pMap5 = undefined;
-        repMap1 = undefined;
-        repMap2 = undefined;
-        repMap3 = undefined;
-        repMap4 = undefined;
-        repMap5 = undefined;
+        mapbought = false;
+        pMap = undefined;
+        repMap = undefined;
         praidDone = false;
+        plusLevel = 1;
     }
 }
 
@@ -1305,7 +1326,7 @@ function PraidHarder() {
     }
 
     pRaidIndex = getPageSetting(praidSetting).indexOf(game.global.world);
-    if (pRaidIndex == -1 || typeof(getPageSetting(maxPraidZSetting)[pRaidIndex]) === "undefined") maxPlusZones = plusMapToRun(game.global.world);
+    if (pRaidIndex == -1 || typeof(getPageSetting(maxPraidZSetting)[pRaidIndex]) === "undefined") maxPlusZones = plusMapToRunMax(game.global.world);
     else maxPlusZones = getPageSetting(maxPraidZSetting)[pRaidIndex] - game.global.world;
 
     // Check we have a valid number for maxPlusZones

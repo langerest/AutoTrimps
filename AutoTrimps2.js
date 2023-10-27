@@ -257,8 +257,8 @@ function mainLoop() {
         //Raiding
         if ((getPageSetting('PraidHarder') == true && getPageSetting('Praidingzone').length > 0 && game.global.challengeActive != "Daily") || (getPageSetting('dPraidHarder') == true && getPageSetting('dPraidingzone').length > 0 && game.global.challengeActive == "Daily")) PraidHarder();
         else {
-            if (getPageSetting('Praidingzone').length && game.global.challengeActive != "Daily") Praiding();
-            if (getPageSetting('dPraidingzone').length && game.global.challengeActive == "Daily") dailyPraiding();
+            if ((getPageSetting('Praidingzone').length && game.global.challengeActive != "Daily") 
+            || getPageSetting('dPraidingzone').length && game.global.challengeActive == "Daily") Praiding();
         }
         if (((getPageSetting('BWraid') && game.global.challengeActive != "Daily") || (getPageSetting('Dailybwraid') && game.global.challengeActive == "Daily"))) {
             BWraiding();
