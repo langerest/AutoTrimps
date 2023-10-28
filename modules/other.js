@@ -36,10 +36,6 @@ function autoRoboTrimp() {
     }
 }
 
-function isBelowThreshold(a) {
-    return a != game.global.world
-}
-
 function buyWeps() {
     if (!((getPageSetting('BuyWeaponsNew') == 1) || (getPageSetting('BuyWeaponsNew') == 3))) return;
     preBuy(), game.global.buyAmt = getPageSetting('gearamounttobuy'), game.equipment.Dagger.level < getPageSetting('CapEquip2') && canAffordBuilding('Dagger', null, null, !0) && buyEquipment('Dagger', !0, !0), game.equipment.Mace.level < getPageSetting('CapEquip2') && canAffordBuilding('Mace', null, null, !0) && buyEquipment('Mace', !0, !0), game.equipment.Polearm.level < getPageSetting('CapEquip2') && canAffordBuilding('Polearm', null, null, !0) && buyEquipment('Polearm', !0, !0), game.equipment.Battleaxe.level < getPageSetting('CapEquip2') && canAffordBuilding('Battleaxe', null, null, !0) && buyEquipment('Battleaxe', !0, !0), game.equipment.Greatsword.level < getPageSetting('CapEquip2') && canAffordBuilding('Greatsword', null, null, !0) && buyEquipment('Greatsword', !0, !0), !game.equipment.Arbalest.locked && game.equipment.Arbalest.level < getPageSetting('CapEquip2') && canAffordBuilding('Arbalest', null, null, !0) && buyEquipment('Arbalest', !0, !0), postBuy()
@@ -241,11 +237,11 @@ var plusLevel = 1;
 var pMap = undefined;
 var repMap = undefined;
 var mapbought = false;
+var praidDoneWorldLevel = 0;
 
 function FinishPraiding()
 {
-    prestraidon = false;
-    praidDone = true;
+    praidDoneWorldLevel = game.global.world;
     autoTrimpSettings["AutoMaps"].value = 1;
     game.options.menu.repeatUntil.enabled = 0;
     pMap = undefined;
@@ -265,25 +261,38 @@ function Praiding() {
         cell = ((getPageSetting('Praidingcell') > 0) ? getPageSetting('Praidingcell') : 0);
     }
 
+    
+    if (!getPageSetting(praidSetting).includes(game.global.world)) {
+        prestraid = false;
+        failpraid = false;
+        prestraidon = false;
+        mapbought = false;
+        pMap = undefined;
+        repMap = undefined;
+        praidDone = false;
+        plusLevel = 1;
+        return;
+    }
+
     if (getPageSetting(praidSetting).length) {
-        if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) && !prestraid && !failpraid && !praidDone) {
-            prestraidon = true;
-            if (getPageSetting('AutoMaps') == 1 && !prestraid && !failpraid) {
+        if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) 
+        && praidDoneWorldLevel != game.global.world) {
+            if (getPageSetting('AutoMaps') == 1) {
                 autoTrimpSettings["AutoMaps"].value = 0;
             }
-            if (!game.global.preMapsActive && !game.global.mapsActive && !prestraid) {
+            if (!game.global.preMapsActive && !game.global.mapsActive) {
                 mapsClicked();
                 if (!game.global.preMapsActive) {
                     mapsClicked();
                 }
                 debug("Beginning Prestige Raiding...");
             }
-            if (game.options.menu.repeatUntil.enabled != 2 && !prestraid) {
+            if (game.options.menu.repeatUntil.enabled != 2) {
                 game.options.menu.repeatUntil.enabled = 2;
             }
-            if (game.global.preMapsActive && !game.global.mapsActive && !prestraid) {
+            if (game.global.preMapsActive && !game.global.mapsActive) {
                 debug("Map Loop");
-                if (plusLevel > 5) return;
+                if (plusLevel > 5) FinishPraiding();
                 if (pcheck(plusLevel) && pMap == undefined && !mapbought) {
                     debug("Check complete for map " + plusLevel);
                     plusPres(plusLevel, 1 / (1 + (5 - plusLevel) * 0.8));
@@ -298,46 +307,33 @@ function Praiding() {
                 }
 
                 if (!mapbought) {
-                    failpraid = plusLevel <= 1 ? true : false;
                     debug("Prestige Raid finished due to you can't afford to or you are too weak or you have limited yourself in a P/I zone. ");
                     FinishPraiding();
                 }
             }
-            if (game.global.preMapsActive && !game.global.mapsActive && pMap != undefined && !prestraid) {
+            if (game.global.preMapsActive && !game.global.mapsActive && pMap != undefined) {
                 debug("running map " + plusLevel);
                 selectMap(pMap);
                 runMap();
                 repMap = pMap;
                 pMap = undefined;
             }
-            if (!prestraid && !game.global.repeatMap) {
+            if (!game.global.repeatMap) {
                 repeatClicked();
             }
         }
     }
-    if (game.global.preMapsActive && mapbought && pMap == undefined && !prestraid && !failpraid) {
-        mapbought = false;
-        plusLevel += 1;
-        debug("plusLevel: " + plusLevel);
-        if (plusLevel > 5) prestraid = true;
+    if (game.global.preMapsActive && mapbought && pMap == undefined && praidDoneWorldLevel != game.global.world) {
         if (repMap != undefined) {
             recycleMap(getMapIndex(repMap));
             repMap = undefined;
         }
-    }
-    if (game.global.preMapsActive && prestraid && !failpraid && prestraidon) {
-        debug("Prestige raiding successful!");
-        FinishPraiding();
-    }
-    if (getPageSetting(praidSetting).every(isBelowThreshold)) {
-        prestraid = false;
-        failpraid = false;
-        prestraidon = false;
         mapbought = false;
-        pMap = undefined;
-        repMap = undefined;
-        praidDone = false;
-        plusLevel = 1;
+        plusLevel += 1;
+        if (plusLevel > 5) {
+            debug("Prestige raiding successful!");
+            FinishPraiding();
+        }
     }
 }
 
