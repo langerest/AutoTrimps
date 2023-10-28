@@ -685,22 +685,20 @@ function autoMap() {
             if (!game.global.switchToMaps) {
                 mapsClicked();
             }
-            if ((!getPageSetting('PowerSaving') || (getPageSetting('PowerSaving') == 2) && doVoids) && game.global.switchToMaps &&
-                (needPrestige || doVoids ||
-                    ((challengeActive("Lead") && !challSQ) && game.global.world % 2 == 1) ||
-                    (!enoughDamage && enoughHealth && game.global.lastClearedCell < 9) ||
-                    (shouldFarm && game.global.lastClearedCell >= customVars.shouldFarmCell) ||
-                    (scryerStuck)) &&
-                (
-                    (game.resources.trimps.realMax() <= game.resources.trimps.owned + 1) ||
-                    ((challengeActive("Lead") && !challSQ) && game.global.lastClearedCell > 93) ||
-                    (doVoids && game.global.lastClearedCell > 70)
-                )
-            ) {
-                if (scryerStuck) {
-                    debug("Got perma-stuck on cell " + (game.global.lastClearedCell + 2) + " during scryer stance. Are your scryer settings correct? Entering map to farm to fix it.");
+            else {
+                if (getPageSetting('PowerSaving') == 1 || (getPageSetting('PowerSaving') == 2 && doVoids)) {
+                    mapsClicked();
                 }
-                mapsClicked();
+                else if ((needPrestige || doVoids ||
+                    (challengeActive("Lead")  && game.global.world % 2 == 1) ||
+                    (!enoughDamage && game.global.lastClearedCell <= 50) ||
+                    (shouldFarm && game.global.lastClearedCell >= customVars.shouldFarmCell)) &&
+                    ((challengeActive("Lead")  && game.global.world % 2 == 1 && game.global.lastClearedCell > 93) ||
+                    (game.resources.trimps.realMax() <= game.resources.trimps.owned + 1) ||
+                    (doVoids && game.global.lastClearedCell > 90))
+                ) {
+                    mapsClicked();
+                }
             }
         }
     } else if (game.global.preMapsActive) {
