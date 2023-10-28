@@ -685,7 +685,7 @@ function autoMap() {
             if (!game.global.switchToMaps) {
                 mapsClicked();
             }
-            else {
+            if (game.global.switchToMaps) {
                 if (getPageSetting('PowerSaving') == 1 || (getPageSetting('PowerSaving') == 2 && doVoids)) {
                     mapsClicked();
                 }
