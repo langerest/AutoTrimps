@@ -266,13 +266,16 @@ function autoStance() {
             if      (survive("D", critPower))  {setFormation(2);   break;}
             else if (survive("XB", critPower)) {setFormation("0"); break;}
             else if (survive("B", critPower))  {setFormation(3);   break;}
-            else if (survive("X", critPower))  {setFormation("0"); break;}
+            else if (survive("X", critPower))  {
+                if (game.global.uberNature == "Wind" && getEmpowerment() != "Wind") {setFormation("W"); break;}
+                setFormation("0"); break;}
             else if (survive("H", critPower))  {setFormation(1);   break;}
 	    }
 
         //If it cannot survive the worst case scenario on any formation, attempt it's luck on H, if available, or X
         if (critPower < -2) {
             if (game.upgrades.Formations.done) setFormation(1);
+            else if (game.global.uberNature == "Wind" && getEmpowerment() != "Wind") setFormation("W");
             else setFormation("0");
 	    }
     }
