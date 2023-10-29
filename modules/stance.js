@@ -242,6 +242,13 @@ function survive(formation = "S", critPower = 2, ignoreArmy) {
 }
 
 function autoStance() {
+    if (game.global.uberNature == "Wind" && getEmpowerment() != "Wind") {
+        x = 5;
+    }
+    else {
+        x = 0;
+    }
+
     calcBaseDamageInX();
 
     //Invalid Map - Dead Soldiers - Auto Stance Disabled - Formations Unavailable - No Enemy
@@ -264,19 +271,16 @@ function autoStance() {
         var critPower;
         for (critPower=2; critPower >= -2; critPower--) {
             if      (survive("D", critPower))  {setFormation(2);   break;}
-            else if (survive("XB", critPower)) {setFormation("0"); break;}
+            else if (survive("XB", critPower)) {setFormation(x);   break;}
             else if (survive("B", critPower))  {setFormation(3);   break;}
-            else if (survive("X", critPower))  {
-                if (game.global.uberNature == "Wind" && getEmpowerment() != "Wind") {debug("Set formation wind 1"); setFormation(5); break;}
-                setFormation("0"); break;}
+            else if (survive("X", critPower))  {setFormation(x);   break;}
             else if (survive("H", critPower))  {setFormation(1);   break;}
 	    }
 
         //If it cannot survive the worst case scenario on any formation, attempt it's luck on H, if available, or X
         if (critPower < -2) {
             if (game.upgrades.Formations.done) setFormation(1);
-            else if (game.global.uberNature == "Wind" && getEmpowerment() != "Wind") {debug("Set formation wind 2"); setFormation(5);}
-            else setFormation("0");
+            else setFormation(x);
 	    }
     }
 
