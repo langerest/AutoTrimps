@@ -690,10 +690,10 @@ function autoMap() {
                     mapsClicked();
                 }
                 else if ((needPrestige || doVoids ||
-                    (challengeActive("Lead")  && game.global.world % 2 == 1) ||
+                    (challengeActive("Lead") && !challSQ && game.global.world % 2 == 1) ||
                     (!enoughDamage && game.global.lastClearedCell <= 50) ||
                     (shouldFarm && game.global.lastClearedCell >= customVars.shouldFarmCell)) &&
-                    ((challengeActive("Lead")  && game.global.world % 2 == 1 && game.global.lastClearedCell > 93) ||
+                    ((challengeActive("Lead") && !challSQ && game.global.world % 2 == 1 && game.global.lastClearedCell > 93) ||
                     (game.resources.trimps.realMax() <= game.resources.trimps.owned + 1) ||
                     (doVoids && game.global.lastClearedCell > 90))
                 ) {
