@@ -295,7 +295,7 @@ function Praiding() {
                 if (plusLevel > 5) FinishPraiding();
                 if (pcheck(plusLevel) && pMap == undefined && !mapbought) {
                     debug("Check complete for map " + plusLevel);
-                    plusPres(plusLevel, 1 / (1 + (5 - plusLevel) * 0.8));
+                    plusPres(plusLevel, 1 / (1 + (5 - plusLevel) * 1));
                     if ((updateMapCost(true) <= game.resources.fragments.owned)) {
                         buyMap();
                         mapbought = true;
