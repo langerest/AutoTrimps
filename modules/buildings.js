@@ -242,6 +242,9 @@ function buyBuildings() {
     //Nurseries Init
     var nurseryZoneOk = game.global.world >= getPageSetting('NoNurseriesUntil');
     var maxNurseryOk = getPageSetting('MaxNursery') < 0 || game.buildings.Nursery.owned < getPageSetting('MaxNursery');
+    
+    var nurseryAtZone = getPageSetting('BuildNurseryAtZone').length && getPageSetting('BuildNurseryAtZone').includes(game.global.world) 
+    && (getPageSetting('ZoneMaxNursery') < 0 || game.buildings.Nursery.owned < getPageSetting('ZoneMaxNursery'));
 
     var spireNurseryActive = game.global.challengeActive != "Daily" && (game.global.world > 200 && isActiveSpireAT() || game.global.world <= 200 && getPageSetting('IgnoreSpiresUntil') <= 200);
     var nurseryPreSpire = spireNurseryActive && game.buildings.Nursery.owned < getPageSetting('PreSpireNurseries');
@@ -267,7 +270,7 @@ function buyBuildings() {
 	}
 
     //Nurseries
-    if (game.buildings.Nursery.locked == 0 && !hidebuild && !skipNursery && (nurseryZoneOk && maxNurseryOk || nurseryPreSpire || dailyNurseryPreSpire)) {
+    if (game.buildings.Nursery.locked == 0 && !hidebuild && !skipNursery && (nurseryZoneOk && maxNurseryOk || nurseryAtZone || nurseryPreSpire || dailyNurseryPreSpire)) {
         safeBuyBuilding('Nursery');
     }
 

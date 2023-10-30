@@ -523,6 +523,8 @@ function initializeAllSettings() {
     //Line 4
     createSetting('NurseryWall', 'Nursery Wall', 'Only spends N% of resources on nurseries. N being this setting. ', 'value', -1, null, 'Buildings');
     createSetting('NoNurseriesUntil', 'No Nurseries Until z', 'Builds Nurseries starting from this zone. -1 to build from when they are unlocked. ', 'value', '-1', null, 'Buildings');
+    createSetting('BuildNurseryAtZone', 'Build Nursery At Zone', 'Builds Nurseries at zones specified. Useful for void map. <b>You can use multiple values like this 495,506,525! </b>', 'multiValue', [-1], null, 'Buildings');
+    createSetting('ZoneMaxNursery', 'Max Nurseries At Zone', 'Set the maximum number of Nurseries to build at zones specified. Overrides No Nurseries Until z and Max Nurseries! -1 for unlimited.', 'value', 0, null, 'Buildings');
 
     //RBuildings
 
@@ -1854,6 +1856,8 @@ function updateCustomButtons() {
     (!radonon && !fuckbuilding) ? turnOn("MaxNursery") : turnOff("MaxNursery");
     (!radonon && !fuckbuilding) ? turnOn("NoNurseriesUntil") : turnOff("NoNurseriesUntil");
     (!radonon && !fuckbuilding) ? turnOn("NurseryWall") : turnOff("NurseryWall");
+    (!radonon && !fuckbuilding) ? turnOn("BuildNurseryAtZone") : turnOff("BuildNurseryAtZone");
+    (!radonon && !fuckbuilding) ? turnOn("ZoneMaxNursery") : turnOff("ZoneMaxNursery");
     (!radonon && !fuckbuilding) ? turnOn("WarpstationCap") : turnOff("WarpstationCap");
     (!radonon && !fuckbuilding) ? turnOn("WarpstationCoordBuy") : turnOff("WarpstationCoordBuy");
     (!radonon && !fuckbuilding) ? turnOn("FirstGigastation") : turnOff("FirstGigastation");
