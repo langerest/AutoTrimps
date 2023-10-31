@@ -280,7 +280,7 @@ function Praiding() {
         && praidDoneWorldLevel != game.global.world) {
             if (getPageSetting('AutoMaps') == 1) {
                 var status;
-                [status, ,] = updateAutoMapsStatus(ture);
+                [status, ,] = updateAutoMapsStatus(true);
                 if(status == 'Prestige' || status == 'Out of Map Credits') {
                     return;
                 }
