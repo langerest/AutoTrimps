@@ -282,7 +282,6 @@ function Praiding() {
                 var status;
                 [status, ,] = updateAutoMapsStatus(true);
                 if(status == "Prestige" || status == "Out of Map Credits") {
-                    debug("Automap status " + status);
                     return;
                 }
                 autoTrimpSettings["AutoMaps"].value = 0;
