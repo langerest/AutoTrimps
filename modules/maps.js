@@ -59,7 +59,7 @@ function updateAutoMapsStatus(get) {
     else if (needPrestige && !doVoids) status = 'Prestige';
     else if (doVoids) {
         var stackedMaps = Fluffy.isRewardActive('void') ? countStackedVoidMaps() : 0;
-        status = 'Void Maps: ' + game.global.totalVoidMaps + ((stackedMaps) ? " (" + stackedMaps + " stacked)" : "") + ' remaining';
+        status = 'Void Maps: ' + game.global.totalVoidMaps + ((stackedMaps) ? " (" + stackedMaps + " stacks)" : "") + ' remaining';
     } else if (shouldFarm && !doVoids) status = 'Farming: ' + calcHDratio().toFixed(4) + 'x';
     else if (!enoughHealth && !enoughDamage) status = 'Want Health & Damage';
     else if (!enoughDamage) status = 'Want ' + calcHDratio().toFixed(4) + 'x &nbspmore damage';
@@ -919,7 +919,7 @@ function RupdateAutoMapsStatus(get) {
     else if (RneedPrestige && !RdoVoids) status = 'Prestige';
     else if (RdoVoids) {
         var stackedMaps = Fluffy.isRewardActive('void') ? countStackedVoidMaps() : 0;
-        status = 'Void Maps: ' + game.global.totalVoidMaps + ((stackedMaps) ? " (" + stackedMaps + " stacked)" : "") + ' remaining';
+        status = 'Void Maps: ' + game.global.totalVoidMaps + ((stackedMaps) ? " (" + stackedMaps + " stacks)" : "") + ' remaining';
     } else if (RshouldFarm && !RdoVoids) status = 'Farming: ' + RcalcHDratio().toFixed(4) + 'x';
     else if (!RenoughHealth && !RenoughDamage) status = 'Want Health & Damage';
     else if (!RenoughDamage) status = 'Want ' + RcalcHDratio().toFixed(4) + 'x &nbspmore damage';
