@@ -186,7 +186,7 @@ function mainLoop() {
 
         //Core
         if (getPageSetting('AutoMaps') > 0 && game.global.mapsUnlocked) autoMap();
-	if (getPageSetting('automapsalways') == true && autoTrimpSettings.AutoMaps.value != 1) autoTrimpSettings.AutoMaps.value = 1;
+        if (getPageSetting('automapsalways') == true && autoTrimpSettings.AutoMaps.value != 1) autoTrimpSettings.AutoMaps.value = 1;
         if (getPageSetting('showautomapstatus') == true) updateAutoMapsStatus();
         if (getPageSetting('ManualGather2') == 1) manualLabor2();
         if (getPageSetting('TrapTrimps') && game.global.trapBuildAllowed && game.global.trapBuildToggled == false) toggleAutoTrap();

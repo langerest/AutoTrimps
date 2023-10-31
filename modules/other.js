@@ -279,6 +279,11 @@ function Praiding() {
         if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) 
         && praidDoneWorldLevel != game.global.world) {
             if (getPageSetting('AutoMaps') == 1) {
+                var status;
+                [status, ,] = updateAutoMapsStatus(ture);
+                if(status == 'Prestige' || status == 'Out of Map Credits') {
+                    return;
+                }
                 autoTrimpSettings["AutoMaps"].value = 0;
             }
             if (!game.global.preMapsActive && !game.global.mapsActive) {
