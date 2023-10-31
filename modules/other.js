@@ -278,10 +278,11 @@ function Praiding() {
     if (getPageSetting(praidSetting).length) {
         if (getPageSetting(praidSetting).includes(game.global.world) && ((cell <= 1) || (cell > 1 && (game.global.lastClearedCell + 1) >= cell)) 
         && praidDoneWorldLevel != game.global.world) {
-            if (getPageSetting('AutoMaps') == 1) {
+            if (getPageSetting("AutoMaps") == 1) {
                 var status;
                 [status, ,] = updateAutoMapsStatus(true);
-                if(status == 'Prestige' || status == 'Out of Map Credits') {
+                if(status == "Prestige" || status == "Out of Map Credits") {
+                    debug("Automap status " + status);
                     return;
                 }
                 autoTrimpSettings["AutoMaps"].value = 0;
