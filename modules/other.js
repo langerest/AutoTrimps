@@ -266,6 +266,7 @@ function Praiding() {
         prestraid = false;
         failpraid = false;
         prestraidon = false;
+        praidDoneWorldLevel = 0;
         mapbought = false;
         pMap = undefined;
         repMap = undefined;
