@@ -662,6 +662,7 @@ function initializeAllSettings() {
     //Line 4
     createSetting('TrimpleZ', 'Trimple Z', 'I don\'t really think doing this automatically is a good idea. You might want to farm for a bit before this, but I\'m not sure if it\'s meaningful at all to make a \'farm X minutes before trimple\' parameter to go along with it. Set it to the zone you want and it will run Trimple of Doom for Ancient Treasure AFTER farming and getting map stacks. If it is a negative number, this will be disabled after a successful run so you can set it differently next time.', 'valueNegative', 0, null, 'Maps');
     createSetting('AdvMapSpecialModifier', 'Map Special Modifier', '<b>BELOW 300 ONLY</b><br> Attempt to select the BEST map special modifier. When starting a map for <b>Prestige</b> it will use <i>Prestigious</i>. When starting a map for <b>Farming</b> (for equipment) it will use your best metal cache. In any other case (such as farming for map stacks) it will use <i>Fast Attacks</i>. In all cases it uses the best modifier that can be afforded.', 'boolean', true, null, 'Maps');
+    createSetting('PrestigeOverFarm', ["Farm Over Prestige", "Prestige Over Farm"], 'For Map Special Modifier to choose between LMC and P when both prestige and farming are needed.', 'multitoggle', 0, null, "Maps");
     createSetting('scryvoidmaps', 'VM Scryer', 'Only use if you have Scryhard II, for er, obvious reasons. Works without the scryer options. ', 'boolean', false, null, 'Maps');
     createSetting('buywepsvoid', 'VM Buy Weps', 'Buys gear in Void maps regardless of your H:D ratio. Useful if you want to overkill as much as possible. ', 'boolean', false, null, 'Maps');
     createSetting('farmWonders', 'Farm Wonders', 'Farms wonders until the selected amount and does BW at given zone to finish the challenge', 'boolean', false, null, 'Maps')
@@ -1981,6 +1982,7 @@ function updateCustomButtons() {
     !radonon ? turnOn("onlystackedvoids") : turnOff("onlystackedvoids");
     !radonon ? turnOn("TrimpleZ") : turnOff("TrimpleZ");
     !radonon ? turnOn("AdvMapSpecialModifier") : turnOff("AdvMapSpecialModifier");
+    (!radonon && getPageSetting('AdvMapSpecialModifier')) ? turnOn("PrestigeOverFarm") : turnOff("PrestigeOverFarm");
     !radonon ? turnOn("scryvoidmaps") : turnOff("scryvoidmaps");
     !radonon ? turnOn("buywepsvoid") : turnOff("buywepsvoid");
     !radonon ? turnOn("farmWonders") : turnOff("farmWonders");
