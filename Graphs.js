@@ -1120,7 +1120,7 @@ const graphList = [
   }),
   // U1 Graphs
   new Graph("heliumOwned", 1, "Helium", {
-    toggles: ["perHr", "perZone", "lifetime", "world", "logarithmic"]
+    toggles: ["perHr", "perZone", "lifetime", "world", "map", "logarithmic"]
   }),
   new Graph("fluffy", 1, "Fluffy Exp", {
     conditional: () => { return getGameData.u1hze() >= 299 && getGameData.fluffy() < 4266662510275000 }, // pre unlock, post E10L10
@@ -1128,6 +1128,7 @@ const graphList = [
     toggles: ["perHr", "perZone", "logarithmic"]
   }),
   new Graph("essence", 1, "Dark Essence", {
+    yType: "logrithmic",
     conditional: () => { return getGameData.essence() < 5.826e+39 },
     customFunction: (portal, i) => { return diff("essence", portal.initialDE)(portal, i) },
     toggles: ["perHr", "perZone", "logarithmic"],
