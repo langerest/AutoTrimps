@@ -102,10 +102,8 @@ function testMapSpecialModController() {
                 } else if (needPrestige && a.includes("p")) {
                     c.value = "p";
                 } else c.value = "fa";
-                if (document.getElementById("advPerfectCheckbox")) {
-                    document.getElementById("advPerfectCheckbox").checked = true;
-                    if (updateMapCost(true) > game.resources.fragments.owned) document.getElementById("advPerfectCheckbox").checked = false;
-                }
+                document.getElementById("advPerfectCheckbox").checked = true;
+                if (updateMapCost(true) > game.resources.fragments.owned) document.getElementById("advPerfectCheckbox").checked = false;
                 for (var d = updateMapCost(!0), e = game.resources.fragments.owned, f = 100 * (d / e); 0 < c.selectedIndex && d > e; d = updateMapCost(!0)) {
                     "0" != c.value && debug("Could not afford " + mapSpecialModifierConfig[c.value].name + ". Cost: " + (100 * (d / e)).toFixed(2) + "% of your fragments.");
                     if (c.value == "lmc")
