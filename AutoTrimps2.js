@@ -275,7 +275,7 @@ function mainLoop() {
         if (cagu && cagu != 'Off' && game.global.runningChallengeSquared) autoGoldenUpgradesAT(cagu);
 
         //Fluffy
-        if(getPageSetting('AutoFluffyEvolve')) EvolveFluffy();
+        if (getPageSetting('AutoFluffyEvolve')) EvolveFluffy();
     }
 
     //Logic for Universe 2
