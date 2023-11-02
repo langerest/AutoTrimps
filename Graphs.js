@@ -1398,7 +1398,7 @@ var portalSaveData = {}
 if (localStorage["allSaveData"]) delete localStorage["allSaveData"]; // remove old AT graph data
 
 // load and initialize the UI
-loadGraphData();
+// loadGraphData();
 createUI()
 showHideUnusedGraphs()
 var lastTheme = -1;
