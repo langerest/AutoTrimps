@@ -1120,7 +1120,7 @@ const graphList = [
   }),
   // U1 Graphs
   new Graph("heliumOwned", 1, "Helium", {
-    toggles: ["perHr", "perZone", "lifetime", "world", "map", "logarithmic"]
+    toggles: ["perHr", "perZone", "lifetime", "world", "logarithmic"]
   }),
   new Graph("fluffy", 1, "Fluffy Exp", {
     conditional: () => { return getGameData.u1hze() >= 299 && getGameData.fluffy() < 4266662510275000 }, // pre unlock, post E10L10
