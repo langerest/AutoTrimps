@@ -1136,6 +1136,9 @@ function initializeAllSettings() {
 
     //Fluffy
     createSetting('AutoFluffyEvolve', 'Evolve Fluffy', '<b>MASTER BUTTON</b> Automatically evolve Fluffy.', 'boolean', false, null, 'Fluffy');
+    createSetting('FluffyEvolveDaily', 'Evolve in Daily', 'Automatically evolve Fluffy in dailies.', 'boolean', false, null, 'Fluffy');
+    createSetting('MinFluffyEvolveZ', 'Min Evolve Zone', 'Only evolve Fluffy once this Zone is reached in current portal. Disable with -1 or 0.', 'value', 301, null, 'Fluffy');
+    createSetting('MaxFluffyEvolveZ', 'Max Evolve Zone', 'Will not evolve Fluffy once this Zone is reached in current portal. Disable with -1.', 'value', 302, null, 'Fluffy');
 
 
     //MAZ window Stuff
@@ -2422,6 +2425,9 @@ function updateCustomButtons() {
 
     //Fluffy
     !radonon ? turnOn("AutoFluffyEvolve") : turnOff("AutoFluffyEvolve");
+    (!radonon && getPageSetting("AutoFluffyEvolve")) ? turnOn("FluffyEvolveDaily") : turnOff("FluffyEvolveDaily");
+    (!radonon && getPageSetting("AutoFluffyEvolve")) ? turnOn("MinFluffyEvolveZ") : turnOff("MinFluffyEvolveZ");
+    (!radonon && getPageSetting("AutoFluffyEvolve")) ? turnOn("MaxFluffyEvolveZ") : turnOff("MaxFluffyEvolveZ");
 
 
     //Display
