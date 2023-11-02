@@ -1,5 +1,4 @@
 function EvolveFluffy()
 {
-    debug("test");
-    debug("Fluffy Level: " + Fluffy.calculateLevel());
+    debug("Fluffy Level: " + Fluffy.currentLevel);
 }
