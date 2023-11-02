@@ -23,7 +23,7 @@ function initializeAutoTrimps() {
     loadPageVariables();
     ATscriptLoad('', 'SettingsGUI');
     var script = document.createElement('script');
-    script.src = 'https://langerest.github.io/AutoTrimps/Graphs.js';
+    script.src = 'https://quiaaaa.github.io/AutoTrimps/Graphs.js';
     document.head.appendChild(script);
     ATmoduleList = ['import-export', 'query', 'calc', 'portal', 'upgrades', 'heirlooms', 'buildings', 'jobs', 'equipment', 'gather', 'stance', 'mapfunctions', 'maps', 'breedtimer', 'dynprestige', 'fight', 'scryer', 'magmite', 'nature', 'other', 'perks', 'fight-info', 'performance', 'ab', 'MAZ', 'fluffy'];
     for (var m in ATmoduleList) {
