@@ -226,6 +226,7 @@ function initializeAllTabs() {
     createTabs("Golden", "Golden Upgrade Settings");
     createTabs("SA", "SA Settings");
     createTabs("Nature", "Nature Settings");
+    createTabs("Fluffy", "Fluffy Settings");
     createTabs("Display", "Display & Spam Settings");
     createTabs("Import Export", "Import & Export Settings");
     var li_0 = document.createElement('li');
@@ -1131,6 +1132,10 @@ function initializeAllSettings() {
     createSetting('pc2enlightthresh', 'E: C: Poison', 'Activate Poison Enlight when Enlight cost is below this Thresh in C2s. Consumes Tokens. -1 to disable. ', 'value', -1, null, 'Nature');
     createSetting('wc2enlightthresh', 'E: C: Wind', 'Activate Wind Enlight when Enlight cost is below this Thresh in C2s. Consumes Tokens. -1 to disable. ', 'value', -1, null, 'Nature');
     createSetting('ic2enlightthresh', 'E: C: Ice', 'Activate Ice Enlight when Enlight cost is below this Thresh in C2s. Consumes Tokens. -1 to disable. ', 'value', -1, null, 'Nature');
+
+
+    //Fluffy
+    createSetting('AutoFluffyEvolve', 'Evolve Fluffy', '<b>MASTER BUTTON</b> Automatically evolve Fluffy.', 'boolean', false, null, 'Fluffy');
 
 
     //MAZ window Stuff
@@ -2413,6 +2418,10 @@ function updateCustomButtons() {
     !radonon && getPageSetting('autoenlight') == true ? turnOn("pc2enlightthresh") : turnOff("pc2enlightthresh");
     !radonon && getPageSetting('autoenlight') == true ? turnOn("wc2enlightthresh") : turnOff("wc2enlightthresh");
     !radonon && getPageSetting('autoenlight') == true ? turnOn("ic2enlightthresh") : turnOff("ic2enlightthresh");
+
+
+    //Fluffy
+    !radonon ? turnOn("AutoFluffyEvolve") : turnOff("AutoFluffyEvolve");
 
 
     //Display
